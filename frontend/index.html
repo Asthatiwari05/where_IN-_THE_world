@@ -150,6 +150,63 @@
     <div id="items" class="grid grid-cols-1 md:grid-cols-3 gap-8"></div>
   </div>
 
+  <!-- Message Modal -->
+  <div id="messageModal" class="hidden fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+    <div class="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-8 w-full max-w-md shadow-lg">
+      <h3 class="text-2xl font-bold mb-4 glow-text">Message Item Owner</h3>
+      <form id="messageForm" onsubmit="event.preventDefault(); sendMessage();" class="space-y-4">
+        
+        <!-- Sender Name -->
+        <div>
+          <label class="block text-sm font-medium mb-2">Your Name</label>
+          <input 
+            type="text" 
+            id="senderName"
+            placeholder="Enter your name" 
+            required 
+            class="w-full px-4 py-2 rounded-lg bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-400">
+        </div>
+
+        <!-- Sender Phone -->
+        <div>
+          <label class="block text-sm font-medium mb-2">Your Phone</label>
+          <input 
+            type="tel" 
+            id="senderPhone"
+            placeholder="Enter your phone number" 
+            required 
+            class="w-full px-4 py-2 rounded-lg bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-400">
+        </div>
+
+        <!-- Message -->
+        <div>
+          <label class="block text-sm font-medium mb-2">Your Message</label>
+          <textarea 
+            id="messageText"
+            placeholder="Write your message here..." 
+            rows="4"
+            required 
+            class="w-full px-4 py-2 rounded-lg bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-400 resize-none"></textarea>
+        </div>
+
+        <!-- Buttons -->
+        <div class="flex gap-3">
+          <button 
+            type="submit" 
+            class="flex-1 px-4 py-2 rounded-lg bg-blue-500 hover:bg-blue-600 font-semibold text-white transition">
+            Send Message
+          </button>
+          <button 
+            type="button" 
+            onclick="closeMessageModal()"
+            class="flex-1 px-4 py-2 rounded-lg bg-white/10 hover:bg-white/20 font-semibold text-white transition">
+            Cancel
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
   <script src="js/app.js"></script>
 </body>
 </html>
