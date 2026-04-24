@@ -31,7 +31,7 @@ function displayItems(items) {
         
         container.innerHTML += `
             <div class="bg-white/10 p-6 rounded-xl border border-white/10 hover:border-white/30 transition">
-                <img src="http://localhost:5000/uploads/${item.image}"
+                <img src="${item.image ? `http://localhost:5000/uploads/${item.image}` : 'https://via.placeholder.com/300x200?text=No+Image'}"
                     class="w-full h-48 object-cover rounded-lg mb-4"
                     onerror="this.src='https://via.placeholder.com/300x200?text=No+Image'">
 
@@ -58,23 +58,22 @@ function displayItems(items) {
     });
 }
 
-function filterItems() {
-    const searchTerm = document.getElementById("search").value.toLowerCase();
+async function filterItems() {
+    const searchTerm = document.getElementById("search").value;
 
     if (searchTerm.trim() === "") {
         displayItems(allItems);
         return;
     }
 
-    const filtered = allItems.filter(item => 
-        item.itemName.toLowerCase().includes(searchTerm) ||
-        item.description.toLowerCase().includes(searchTerm) ||
-        item.location.toLowerCase().includes(searchTerm)
-    );
-
-    displayItems(filtered);
+    try {
+        const res = await fetch(`http://localhost:5000/api/items/search/${searchTerm}`);
+        const data = await res.json();
+        displayItems(data);
+    } catch (err) {
+        console.error(err);
+    }
 }
-
 function openMessageModal(itemId) {
     const modal = document.getElementById("messageModal");
     modal.dataset.itemId = itemId;

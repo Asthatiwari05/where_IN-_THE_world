@@ -1,0 +1,19 @@
+# Node modules
+node_modules/
+
+# Environment variables
+.env
+
+# Logs
+logs/
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Uploads (optional - if you don’t want images in repo)
+uploads/
+
+# VS Code settings
+.vscode/

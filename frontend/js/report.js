@@ -8,8 +8,10 @@ document.getElementById("reportForm").addEventListener("submit", async function(
     formData.append("description", document.getElementById("description").value);
     formData.append("location", document.getElementById("location").value);
     formData.append("type", localStorage.getItem("reportType"));
-    formData.append("image", document.getElementById("image").files[0]);
-
+    const file = document.getElementById("image").files[0];
+if (file) {
+    formData.append("image", file);
+}
     try {
         const response = await fetch("http://localhost:5000/api/items/report", {
             method: "POST",

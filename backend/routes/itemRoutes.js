@@ -40,21 +40,6 @@ router.get("/", async (req, res) => {
         res.status(500).json({ error: err.message });
     }
 });
-
-// Get a single item by ID
-router.get("/:id", async (req, res) => {
-    try {
-        const item = await Item.findById(req.params.id);
-        if (!item) {
-            return res.status(404).json({ error: "Item not found" });
-        }
-        res.json(item);
-    } catch (err) {
-        res.status(500).json({ error: err.message });
-    }
-});
-
-// Search items by name, description, or location
 router.get("/search/:keyword", async (req, res) => {
     try {
         const keyword = req.params.keyword;
@@ -71,6 +56,21 @@ router.get("/search/:keyword", async (req, res) => {
     }
 });
 
-module.exports = router;
+// Get a single item by ID
+router.get("/:id", async (req, res) => {
+    try {
+        const item = await Item.findById(req.params.id);
+        if (!item) {
+            return res.status(404).json({ error: "Item not found" });
+        }
+        res.json(item);
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+});
+
+// Search items by name, description, or location
+
 
 module.exports = router;
+
